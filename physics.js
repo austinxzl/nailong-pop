@@ -1,7 +1,7 @@
 /* Original fixed-step silhouette physics for Nailong Pop. No external runtime. */
 (function(root){
   'use strict';
-  const RADII=[23,31,42,55,72,94];
+  const RADII=[18,22,27,33,40,48,57,68,80,95];
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   class PopWorld{
     constructor(onMerge=()=>{},shapes=null){this.onMerge=onMerge;this.shapes=shapes;this.reset();}
@@ -52,7 +52,7 @@
       }
       if(consumed.size){
         this.bodies=this.bodies.filter(b=>!consumed.has(b.id));
-        for(const m of merges){if(m.level<5){const b=this.spawn(m.level+1,m.x,m.y);b.vx=m.vx*.35;b.vy=-55;b.spin=(m.x-210)/150;}this.onMerge(m);}
+        for(const m of merges){if(m.level<RADII.length-1){const b=this.spawn(m.level+1,m.x,m.y);b.vx=m.vx*.35;b.vy=-55;b.spin=(m.x-210)/150;}this.onMerge(m);}
       }
       for(let pass=0;pass<7;pass++){
         for(const b of this.bodies)this.walls(b);

@@ -2,13 +2,18 @@
   'use strict';
   const $=id=>document.getElementById(id), canvas=$('board'),ctx=canvas.getContext('2d');
   const levels=[
+    {name:'刘海奶龙',file:8,color:'#ffe991'},
     {name:'呆萌奶龙',file:2,color:'#ffe991'},
     {name:'元气奶龙',file:5,color:'#ffdb70'},
     {name:'比心奶龙',file:3,color:'#ffd263'},
+    {name:'托腮奶龙',file:9,color:'#ffcb65'},
     {name:'圆滚奶龙',file:1,color:'#ffc354'},
+    {name:'摸肚奶龙',file:7,color:'#ffbc50'},
     {name:'功夫奶龙',file:4,color:'#ffaf48'},
+    {name:'爆笑奶龙',file:10,color:'#ffbb45'},
     {name:'大笑奶龙',file:6,color:'#ffdc65'}
   ];
+  const finalLevel=levels.length-1;
   const loadPreference=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}};
   const savePreference=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value));}catch{}};
   const imagePath=l=>`assets/dragon-${levels[l].file}.png`;
@@ -23,7 +28,7 @@
   const world=new PopWorld(merge,POP_SHAPES);
   const format=n=>n.toLocaleString('zh-CN');
   $('best').textContent=format(best);
-  $('evolution').innerHTML=levels.map((l,i)=>`<li id="level-${i}"><div class="portrait"><img src="${imagePath(i)}" alt="${l.name}"></div><div class="level-name">${l.name}<small>LV.0${i+1}</small></div></li>`).join('');
+  $('evolution').innerHTML=levels.map((l,i)=>`<li id="level-${i}"><div class="portrait"><img src="${imagePath(i)}" alt="${l.name}"></div><small>${String(i+1).padStart(2,'0')}</small></li>`).join('');
   function announce(message){$('announcer').textContent=message;}
   function renderLeaderboard(){
     $('personal-scores').replaceChildren();
@@ -35,11 +40,11 @@
     const now=new Date(),date=`${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;
     personalScores.push({score,date});personalScores.sort((a,b)=>b.score-a.score);personalScores=personalScores.slice(0,5);savePreference('nailong-pop-personal-scores',personalScores);renderLeaderboard();
   }
-  function unlock(level){discovered.add(level);$(`level-${level}`).classList.add('discovered');$('progress-count').textContent=`${discovered.size} / 6`;}
+  function unlock(level){discovered.add(level);$(`level-${level}`).classList.add('discovered');$('progress-count').textContent=`${discovered.size} / ${levels.length}`;}
   function update(){
     $('score').textContent=format(score);$('best').textContent=format(best);
-    $('charge-label').textContent=charge>=100?'已蓄满':`${charge} / 100`;
-    $('charge-fill').style.width=`${charge}%`;$('shake').disabled=charge<100||paused||ended||!ready;
+    $('charge-label').textContent=charge>=600?'600 / 600':`${charge} / 600`;
+    $('charge-fill').style.width=`${charge/6}%`;$('shake').disabled=charge<600||paused||ended||!ready;
     $('next-image').src=imagePath(next);$('next-image').alt=`下一只：${levels[next].name}`;
   }
   function audio(freq=440,duration=.1,type='sine',volume=.07){
@@ -63,21 +68,21 @@
   }
   function merge(m){
     combo=world.time-lastMerge<2.7?Math.min(combo+1,5):1;lastMerge=world.time;comboUntil=world.time+1.25;
-    const value=m.level===5?800:[12,28,64,140,300][m.level];score+=value*combo;
-    charge=Math.min(100,charge+12+m.level*5);
+    const value=m.level===finalLevel?2400:[6,12,24,48,96,180,340,620,1100][m.level];score+=value*combo;
+    charge=Math.min(600,charge+value*combo);
     if(score>best){best=score;savePreference('nailong-pop-best',best);}
-    burst(m.x,m.y,levels[Math.min(5,m.level+1)].color,m.level===5?40:16);
-    audio(380+Math.min(m.level,5)*115,.16,'sine',.06);
+    burst(m.x,m.y,levels[Math.min(finalLevel,m.level+1)].color,m.level===finalLevel?40:16);
+    audio(380+Math.min(m.level,finalLevel)*75,.16,'sine',.06);
     if(combo>1){$('combo').innerHTML=`<small>快乐连击</small>× ${combo}`;$('combo').classList.add('show');}
-    if(m.level<5)unlock(m.level+1);
-    announce(`合成${levels[Math.min(5,m.level+1)].name}，当前得分${score}`);update();
-    if(m.level===4&&!won){won=true;showModal('win');}
-    if(m.level===5){shakeUntil=world.time+.4;announce('双倍大笑，获得欢乐礼花奖励');}
+    if(m.level<finalLevel)unlock(m.level+1);
+    announce(`合成${levels[Math.min(finalLevel,m.level+1)].name}，当前得分${score}`);update();
+    if(m.level===finalLevel-1&&!won){won=true;showModal('win');}
+    if(m.level===finalLevel){shakeUntil=world.time+.4;announce('双倍大笑，获得欢乐礼花奖励');}
   }
   function reset(){
     world.reset();particles.length=0;rings.length=0;discovered.clear();levels.forEach((_,i)=>$(`level-${i}`).classList.remove('discovered'));
     score=0;charge=0;current=0;next=1;aim=210;ended=false;paused=false;won=false;drops=0;lastDrop=-1;lastMerge=-10;combo=0;pointer=null;recorded=false;
-    $('board-hint').classList.remove('hidden');$('danger').classList.remove('show');$('combo').classList.remove('show');$('progress-count').textContent='0 / 6';
+    $('board-hint').classList.remove('hidden');$('danger').classList.remove('show');$('combo').classList.remove('show');$('progress-count').textContent=`0 / ${levels.length}`;
     syncPause();update();
   }
   function syncSound(){
@@ -97,11 +102,11 @@
     if(kind==='over')recordRound();
     pointer=null;modalKind=kind;paused=true;syncPause();
     const content=$('dialog-content');
-    if(kind==='help')content.innerHTML='<div class="dialog-kicker">HOW TO PLAY</div><h2>碰出一只大笑奶龙</h2><p>相同形态碰在一起，会合成下一种奶龙。连续合成还能触发连击加分。</p><p>手机上拖动瞄准、松手投放；电脑上移动鼠标、点击投放，也可以用 <kbd>←</kbd> <kbd>→</kbd> 和 <kbd>空格</kbd>。</p><p>合成会积攒欢乐值。攒满后点「震一震」，让挤在一起的奶龙重新碰撞。奶龙超过警戒线持续 3 秒，本局结束。</p><p>最后一张捧腹大笑的奶龙是终极形态。两只终极形态碰撞，会化成礼花并奖励 800 基础分。</p><button class="primary" id="modal-primary">知道了，继续玩</button>';
+    if(kind==='help')content.innerHTML='<div class="dialog-kicker">HOW TO PLAY</div><h2>碰出一只大笑奶龙</h2><p>十种形态逐级进化。相同形态碰在一起，会合成下一种奶龙；连续合成触发连击加分。</p><p>手机上拖动瞄准、松手投放；电脑上移动鼠标、点击投放，也可以用 <kbd>←</kbd> <kbd>→</kbd> 和 <kbd>空格</kbd>。</p><p>每积攒 600 分可以「震一震」，让奶龙重新碰撞。使用后蓄力归零，本局总分保留。奶龙超过警戒线持续 3 秒，本局结束。</p><p>最初指定的捧腹大笑奶龙仍是最终形态。两只最终形态相撞，会化成礼花并奖励 2400 基础分。</p><button class="primary" id="modal-primary">知道了，继续玩</button>';
     if(kind==='pause')content.innerHTML='<div class="dialog-kicker">TAKE A BREAK</div><h2>快乐暂停一下</h2><p>奶龙会乖乖等你回来。</p><button class="primary" id="modal-primary">继续游戏</button>';
     if(kind==='restart')content.innerHTML='<h2>重新开一局？</h2><p>本局进度会清空，最高纪录会保留。</p><button class="primary" id="modal-primary">重新开始</button><button class="secondary" id="modal-secondary">继续这局</button>';
-    if(kind==='win')content.innerHTML=`<img class="dialog-image" src="${imagePath(5)}" alt="捧腹大笑的最终形态"><div class="dialog-kicker">HAPPINESS UNLOCKED</div><h2>快乐终于绷不住了！</h2><p>你合出了最终形态「大笑奶龙」。继续挑战，两只大笑奶龙碰撞还有礼花奖励。</p><button class="primary" id="modal-primary">继续冲高分</button>`;
-    if(kind==='over')content.innerHTML=`<div class="dialog-kicker">WELL PLAYED</div><h2>装满了一盒快乐</h2><p>本局得分</p><div class="result-score">${format(score)}</div><p>最高纪录 ${format(best)} · 已发现 ${discovered.size} / 6 种形态</p><button class="primary" id="modal-primary">再来一局</button>`;
+    if(kind==='win')content.innerHTML=`<img class="dialog-image" src="${imagePath(finalLevel)}" alt="捧腹大笑的最终形态"><div class="dialog-kicker">HAPPINESS UNLOCKED</div><h2>快乐终于绷不住了！</h2><p>你合出了最终形态「大笑奶龙」。继续挑战，两只大笑奶龙碰撞还有礼花奖励。</p><button class="primary" id="modal-primary">继续冲高分</button>`;
+    if(kind==='over')content.innerHTML=`<div class="dialog-kicker">WELL PLAYED</div><h2>装满了一盒快乐</h2><p>本局得分</p><div class="result-score">${format(score)}</div><p>最高纪录 ${format(best)} · 已发现 ${discovered.size} / ${levels.length} 种形态</p><button class="primary" id="modal-primary">再来一局</button>`;
     $('dialog-close').hidden=kind==='over';
     $('modal-primary').onclick=()=>{if(kind==='over'||kind==='restart'){recordRound();closeModal();reset();canvas.focus({preventScroll:true});}else closeModal();};
     if($('modal-secondary'))$('modal-secondary').onclick=closeModal;
@@ -124,7 +129,7 @@
   $('help').onclick=()=>showModal('help');$('pause').onclick=()=>{if(!ready||ended)return;if(paused)closeModal();else showModal('pause');};
   $('restart').onclick=()=>{if(drops&&!ended)showModal('restart');else reset();};$('dialog-close').onclick=closeModal;
   $('dialog').addEventListener('cancel',e=>{e.preventDefault();if(modalKind!=='over')closeModal();});
-  $('shake').onclick=()=>{if(charge<100||paused||ended)return;charge=0;world.shake();shakeUntil=world.time+.45;burst(210,480,'#8ee4d8',30);audio(140,.25,'triangle',.05);update();announce('欢乐震场！');};
+  $('shake').onclick=()=>{if(charge<600||paused||ended)return;charge=0;world.shake();shakeUntil=world.time+.45;burst(210,480,'#8ee4d8',30);audio(140,.25,'triangle',.05);update();announce('欢乐震场！');};
   document.addEventListener('visibilitychange',()=>{if(document.hidden&&ready&&!ended&&!paused&&drops)showModal('pause');lastFrame=0;accumulator=0;});
   function drawBody(b,ghost=false){
     const img=images[b.level],r=b.r;
@@ -163,6 +168,6 @@
     render();requestAnimationFrame(frame);
   }
   function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=420*dpr;canvas.height=600*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
-  window.addEventListener('resize',resize);resize();syncSound();update();renderLeaderboard();requestAnimationFrame(frame);
+  window.addEventListener('resize',resize);resize();syncSound();update();renderLeaderboard();$('progress-count').textContent=`0 / ${levels.length}`;requestAnimationFrame(frame);
   Promise.all(images.map((img,i)=>new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error(`无法加载${levels[i].name}`));img.src=imagePath(i);}))).then(()=>{ready=true;$('loading').classList.add('hidden');update();}).catch(()=>{$('loading').innerHTML='<p>奶龙没能集合成功</p><p style="font-size:13px">请检查网络后重试</p><button id="reload-assets">重新加载</button>';$('reload-assets').onclick=()=>location.reload();});
 })();

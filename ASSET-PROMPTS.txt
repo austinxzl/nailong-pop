@@ -60,3 +60,48 @@ Input image: the supplied local image is the exact edit target.
 Primary request: isolate only the existing yellow 奶龙 character by removing the background. This is a faithful cutout, not a redesign or new render.
 Constraints: keep the original character identity, silhouette, expression, gaze, mouth, pose, hands, body proportions, color, belly patch, surface texture and internal shading unchanged. Keep every existing visible part of the subject. Remove all background pixels and cast floor shadows. Center the existing subject on an actually transparent alpha canvas with narrow transparent margins and tight usable bounds. Preserve clean subject edges without white halo, matte, extra outline, rim, badge, text, or props. No added anatomy or invented content.
 Source specifics: full-body yellow character with both hands making a heart in front of chest, big green eyes and slight closed smile. Preserve hand-heart opening and both existing feet. Remove pale background and floor shadow; the opening inside the hand heart must also show genuine transparency where it is background.
+
+ADDITIONAL FORMS
+ASSET 7
+EDIT TARGET: Image 7 (first new supplied image)
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: supplied Image 7 is the exact edit target.
+Primary request: faithfully isolate only the existing yellow 奶龙 character from this source, keeping all existing visible character pixels and appearance. This is background removal, not a redesign.
+Constraints: preserve character identity, exact pose, expression, gaze, mouth, hands, body proportions, color, belly patch, hair if present, source framing/crops, surface texture and internal lighting/shading. Remove every background pixel, external floor shadow, UI badge and rounded image frame. Use genuine alpha transparency, not a drawn checkerboard. Center the existing cropped/full subject with narrow transparent margins and tight useful bounds. Preserve clean edges; no white halo, matte, extra rim, text or props. Do not invent missing anatomy, add feet, extend cropped arms, change expression or generate a new pose.
+Source specifics: tall yellow character with green eyes, small closed mouth, both dark hands resting over cream belly, legs extending down to the source's bottom boundary. The bottom of both legs/feet is cropped in the source. Preserve this precise bottom crop; do not invent feet. Remove pale gray background, ground shadow, rounded frame, white outer margin and the lower-left dark Video badge with triangular play icon completely. Retain only existing visible character.
+
+ASSET 8
+EDIT TARGET: Image 8 (second new supplied image)
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: supplied Image 8 is the exact edit target.
+Primary request: faithfully isolate only the existing yellow 奶龙 character from this source, keeping all existing visible character pixels and appearance. This is background removal, not a redesign.
+Constraints: preserve character identity, exact pose, expression, gaze, mouth, hands, body proportions, color, belly patch, hair if present, source framing/crops, surface texture and internal lighting/shading. Remove every background pixel, external floor shadow, UI badge and rounded image frame. Use genuine alpha transparency, not a drawn checkerboard. Center the existing cropped/full subject with narrow transparent margins and tight useful bounds. Preserve clean edges; no white halo, matte, extra rim, text or props. Do not invent missing anatomy, add feet, extend cropped arms, change expression or generate a new pose.
+Source specifics: close-up hair portrait of round yellow 奶龙, large green eyes, straight dark bowl-cut/bangs over forehead, tiny neutral mouth, shoulders/upper arms partly visible and cropped by source edges. Preserve the hair silhouette, strands, eyes, neutral expression and exact close-up composition. Keep the source's side and bottom body crops. Do not zoom out, create a full body, add hands, belly or legs. Remove chair, orange/yellow striped backdrop, green foliage and rounded frame. Keep only the original close-up character and hair.
+
+ASSET 9
+EDIT TARGET: Image 9 (third new supplied image)
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: supplied Image 9 is the exact edit target.
+Primary request: faithfully isolate only the existing yellow 奶龙 character from this source, keeping all existing visible character pixels and appearance. This is background removal, not a redesign.
+Constraints: preserve character identity, exact pose, expression, gaze, mouth, hands, body proportions, color, belly patch, hair if present, source framing/crops, surface texture and internal lighting/shading. Remove every background pixel, external floor shadow, UI badge and rounded image frame. Use genuine alpha transparency, not a drawn checkerboard. Center the existing cropped/full subject with narrow transparent margins and tight useful bounds. Preserve clean edges; no white halo, matte, extra rim, text or props. Do not invent missing anatomy, add feet, extend cropped arms, change expression or generate a new pose.
+Source specifics: full-body yellow 奶龙 tilting its head/body toward viewer's left with one hand resting on its left cheek, green eyes and a gentle small curved smile; the other arm rests along its side. Preserve the cheek-hand connection, tilted pose, both existing short feet and body proportions. Remove pale background, floor/shadow and rounded image frame.
+
+ASSET 10
+EDIT TARGET: Image 10 (fourth new supplied image)
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: supplied Image 10 is the exact edit target.
+Primary request: faithfully isolate only the existing yellow 奶龙 character from this source, keeping all existing visible character pixels and appearance. This is background removal, not a redesign.
+Constraints: preserve character identity, exact pose, expression, gaze, mouth, hands, body proportions, color, belly patch, hair if present, source framing/crops, surface texture and internal lighting/shading. Remove every background pixel, external floor shadow, UI badge and rounded image frame. Use genuine alpha transparency, not a drawn checkerboard. Center the existing cropped/full subject with narrow transparent margins and tight useful bounds. Preserve clean edges; no white halo, matte, extra rim, text or props. Do not invent missing anatomy, add feet, extend cropped arms, change expression or generate a new pose.
+Source specifics: full-body crouching/laughing yellow 奶龙 facing forward, closed happy eyes, wide black laughing mouth with teeth, both dark hands resting together over cream belly, bent legs with both dark feet visible. Preserve original crouching pose, complete existing feet, hearty laughing face and original dramatic dark/yellow internal shading. Remove white/light background, any external ground shadow and rounded frame. This is an added laughing form; preserve this source identity without imitating another image.
+
+ASSET 10 TARGETED REVISION 2
+Revision 1 is preserved as dragon-10-v1.png; the white background patch inside the left elbow gap required repair.
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input images: Image 1 is the existing transparent edited asset 10 and the exact edit target. Image 2 is the original supplied image 10, included only to identify true background.
+Primary request: make one targeted correction to Image 1: remove the small opaque white triangular background patch inside the gap between the character's bent arm and torso on the viewer's left. It is source background, not belly/skin. Replace only that triangular patch with genuine alpha transparency.
+Constraints: retain all existing transparency. Keep every other subject pixel, yellow skin, cream belly, dark hands, laughing mouth, expression, pose, internal shading, texture, complete visible feet, canvas size and crop unchanged. Preserve the same character. Do not change any other detail, add anatomy, redraw the subject, reframe, add shadows, text, props, halos or outlines. The result must have a genuinely transparent background and transparent elbow gap.
