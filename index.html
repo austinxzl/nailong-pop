@@ -14,7 +14,7 @@
 <body>
   <div class="app">
     <header class="header">
-      <a class="brand" href="./" aria-label="奶龙碰碰乐首页"><span class="brand-mark">碰</span><span>奶龙碰碰乐<small>NAILONG POP</small></span></a>
+      <a class="brand" href="./" aria-label="奶龙碰碰乐首页"><img class="brand-dragon" src="assets/dragon-6.png" alt="捧腹大笑的奶龙"></a>
       <div class="header-actions">
         <button class="icon-button" id="sound" aria-label="关闭音效" title="音效"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4zM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></svg></button>
         <button class="icon-button" id="pause" aria-label="暂停游戏" title="暂停"><svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg></button>
@@ -25,12 +25,11 @@
     <main class="game-layout">
       <aside class="score-panel">
         <div class="score-card"><span class="eyebrow">本局得分</span><strong id="score">0</strong><div class="best-line"><span>最高纪录</span><b id="best">0</b></div></div>
-        <div class="next-card"><span class="eyebrow">下一只</span><div class="next-portrait"><img id="next-image" alt="下一只奶龙" src="assets/dragon-5.png"></div><span id="next-name">元气奶龙</span></div>
-        <div class="desktop-tip"><span class="tip-line"></span><p>相同的碰在一起<br>快乐就会变大。</p><small>移动瞄准 · 点击投放</small></div>
+        <div class="next-card"><span class="eyebrow">下一只</span><div class="next-portrait"><img id="next-image" alt="下一只奶龙" src="assets/dragon-5.png"></div></div>
       </aside>
 
       <section class="play-column" aria-label="游戏区域">
-        <div class="stage-heading"><span><i></i><span id="status-label">合出大笑奶龙</span></span><button id="restart" class="text-button">重新开始</button></div>
+        <div class="stage-heading"><button id="restart" class="text-button">重新开始</button></div>
         <div class="stage" id="stage">
           <canvas id="board" width="420" height="600" tabindex="0" aria-label="奶龙合成游戏。移动鼠标瞄准并点击投放，触屏拖动后松手投放；左右方向键瞄准，空格投放。"></canvas>
           <div class="stage-loading" id="loading"><span class="loader"></span><p>奶龙集合中…</p></div>
@@ -48,10 +47,8 @@
       <aside class="evolution-panel">
         <div class="evolution-title"><span class="eyebrow">快乐进化论</span><span id="progress-count">0 / 6</span></div>
         <ol id="evolution"></ol>
-        <div class="final-note"><span>终极目标</span><p>把快乐合成<br><b>捧腹大笑。</b></p></div>
       </aside>
     </main>
-    <footer>一碰就快乐。<span>原创玩法与界面 · 角色素材由玩家提供</span></footer>
   </div>
 
   <dialog id="dialog">

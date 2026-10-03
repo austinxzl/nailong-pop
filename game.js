@@ -27,7 +27,7 @@
     $('score').textContent=format(score);$('best').textContent=format(best);
     $('charge-label').textContent=charge>=100?'已蓄满':`${charge} / 100`;
     $('charge-fill').style.width=`${charge}%`;$('shake').disabled=charge<100||paused||ended||!ready;
-    $('next-image').src=imagePath(next);$('next-image').alt=`下一只：${levels[next].name}`;$('next-name').textContent=levels[next].name;
+    $('next-image').src=imagePath(next);$('next-image').alt=`下一只：${levels[next].name}`;
   }
   function audio(freq=440,duration=.1,type='sine',volume=.07){
     if(!sound)return;
@@ -65,7 +65,7 @@
   function reset(){
     world.reset();particles.length=0;rings.length=0;discovered.clear();levels.forEach((_,i)=>$(`level-${i}`).classList.remove('discovered'));
     score=0;charge=0;current=0;next=1;aim=210;ended=false;paused=false;won=false;drops=0;lastDrop=-1;lastMerge=-10;combo=0;pointer=null;
-    $('status-label').textContent='合出大笑奶龙';$('board-hint').classList.remove('hidden');$('danger').classList.remove('show');$('combo').classList.remove('show');$('progress-count').textContent='0 / 6';
+    $('board-hint').classList.remove('hidden');$('danger').classList.remove('show');$('combo').classList.remove('show');$('progress-count').textContent='0 / 6';
     syncPause();update();
   }
   function syncSound(){
@@ -98,6 +98,7 @@
   canvas.addEventListener('pointerdown',e=>{if(!ready||paused||ended||pointer!==null)return;pointer=e.pointerId;point(e);canvas.setPointerCapture(e.pointerId);canvas.focus({preventScroll:true});});
   canvas.addEventListener('pointermove',e=>{if(pointer!==null&&e.pointerId!==pointer)return;if(!paused&&!ended)point(e);});
   canvas.addEventListener('pointerup',e=>{if(e.pointerId!==pointer)return;point(e);pointer=null;drop();});
+  canvas.addEventListener('click',e=>{if(e.detail===0)return;point(e);drop();});
   canvas.addEventListener('pointercancel',()=>{pointer=null;});
   canvas.addEventListener('lostpointercapture',()=>{pointer=null;});
   document.addEventListener('keydown',e=>{
@@ -145,7 +146,7 @@
     if(!lastFrame)lastFrame=timestamp;const elapsed=Math.min(.05,(timestamp-lastFrame)/1000);lastFrame=timestamp;
     if(ready&&!paused&&!ended){
       accumulator+=elapsed;
-      while(accumulator>=1/120){const over=world.step(1/120);accumulator-=1/120;if(over){ended=true;$('status-label').textContent='这一盒，满满的快乐';showModal('over');break;}if(paused)break;}
+      while(accumulator>=1/120){const over=world.step(1/120);accumulator-=1/120;if(over){ended=true;showModal('over');break;}if(paused)break;}
       if(paused||ended)accumulator=0;
       for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.life-=elapsed;p.x+=p.vx*elapsed;p.y+=p.vy*elapsed;p.vy+=160*elapsed;if(p.life<=0)particles.splice(i,1);}
       for(let i=rings.length-1;i>=0;i--){rings[i].life-=elapsed;rings[i].r+=110*elapsed;if(rings[i].life<=0)rings.splice(i,1);}
