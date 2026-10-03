@@ -1,0 +1,62 @@
+ASSET 1
+SOURCE /var/folders/hr/9cz75b6d67v7w2skk_l_q7xw0000gn/T/codex-clipboard-1b40a5e9-1bdd-4e66-acaa-deb3a25dbf65.png
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: the supplied local image is the exact edit target.
+Primary request: isolate only the existing yellow 奶龙 character by removing the background. This is a faithful cutout, not a redesign or new render.
+Constraints: keep the original character identity, silhouette, expression, gaze, mouth, pose, hands, body proportions, color, belly patch, surface texture and internal shading unchanged. Keep every existing visible part of the subject. Remove all background pixels and cast floor shadows. Center the existing subject on an actually transparent alpha canvas with narrow transparent margins and tight usable bounds. Preserve clean subject edges without white halo, matte, extra outline, rim, badge, text, or props. No added anatomy or invented content.
+Source specifics: full-body side-facing tall yellow character, hands resting on cream belly, one prominent green eye. Preserve both existing feet and original long body proportions. Remove pale background and floor shadow.
+
+ASSET 2
+SOURCE /var/folders/hr/9cz75b6d67v7w2skk_l_q7xw0000gn/T/codex-clipboard-f99f5883-5b3f-4efd-adc5-8716bcb50ceb.png
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: the supplied local image is the exact edit target.
+Primary request: isolate only the existing yellow 奶龙 character by removing the background. This is a faithful cutout, not a redesign or new render.
+Constraints: keep the original character identity, silhouette, expression, gaze, mouth, pose, hands, body proportions, color, belly patch, surface texture and internal shading unchanged. Keep every existing visible part of the subject. Remove all background pixels and cast floor shadows. Center the existing subject on an actually transparent alpha canvas with narrow transparent margins and tight usable bounds. Preserve clean subject edges without white halo, matte, extra outline, rim, badge, text, or props. No added anatomy or invented content.
+Source specifics: small round yellow character looking upward with pink tongue sticking out and hands behind its sides. Preserve the playful eye gaze, open mouth and tongue exactly. Remove pale background.
+
+ASSET 3
+SOURCE /var/folders/hr/9cz75b6d67v7w2skk_l_q7xw0000gn/T/codex-clipboard-76b98d78-2082-4a6a-bc01-cb7ae418f0c5.png
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: the supplied local image is the exact edit target.
+Primary request: isolate only the existing yellow 奶龙 character by removing the background. This is a faithful cutout, not a redesign or new render.
+Constraints: keep the original character identity, silhouette, expression, gaze, mouth, pose, hands, body proportions, color, belly patch, surface texture and internal shading unchanged. Keep every existing visible part of the subject. Remove all background pixels and cast floor shadows. Center the existing subject on an actually transparent alpha canvas with narrow transparent margins and tight usable bounds. Preserve clean subject edges without white halo, matte, extra outline, rim, badge, text, or props. No added anatomy or invented content.
+Source specifics: full-body yellow character with both hands making a heart in front of chest, big green eyes and slight closed smile. Preserve hand-heart opening and both existing feet. Remove pale background and floor shadow. The heart-shaped opening between the hands shows the character's yellow/orange torso behind it in the original: preserve that torso surface, color and shading inside the heart. Do not punch a transparent hole through the body.
+
+ASSET 4
+SOURCE /var/folders/hr/9cz75b6d67v7w2skk_l_q7xw0000gn/T/codex-clipboard-3940bade-df63-4b1e-9bb0-1cf9006b449d.png
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: the supplied local image is the exact edit target.
+Primary request: isolate only the existing yellow 奶龙 character by removing the background. This is a faithful cutout, not a redesign or new render.
+Constraints: keep the original character identity, silhouette, expression, gaze, mouth, pose, hands, body proportions, color, belly patch, surface texture and internal shading unchanged. Keep every existing visible part of the subject. Remove all background pixels and cast floor shadows. Center the existing subject on an actually transparent alpha canvas with narrow transparent margins and tight usable bounds. Preserve clean subject edges without white halo, matte, extra outline, rim, badge, text, or props. No added anatomy or invented content.
+Source specifics: wide-legged yellow character, one arm raised to viewer's right with dark palm and the other bent over cream belly. The source crops the feet at the bottom. Preserve this exact bottom crop as the cutout's lower silhouette; do not extend feet or invent missing limbs. Remove white/gray background and floor shadow.
+
+ASSET 5
+SOURCE /var/folders/hr/9cz75b6d67v7w2skk_l_q7xw0000gn/T/codex-clipboard-bddd2bc3-0333-4a3d-9cf7-5b633c17fde5.png
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: the supplied local image is the exact edit target.
+Primary request: isolate only the existing yellow 奶龙 character by removing the background. This is a faithful cutout, not a redesign or new render.
+Constraints: keep the original character identity, silhouette, expression, gaze, mouth, pose, hands, body proportions, color, belly patch, surface texture and internal shading unchanged. Keep every existing visible part of the subject. Remove all background pixels and cast floor shadows. Center the existing subject on an actually transparent alpha canvas with narrow transparent margins and tight usable bounds. Preserve clean subject edges without white halo, matte, extra outline, rim, badge, text, or props. No added anatomy or invented content.
+Source specifics: front-facing round yellow character, arms at sides/hips, green eyes and small open smile, cream belly, both feet visible. The gray-white checkerboard is a fake printed background in the source: remove every checkerboard square completely to genuine alpha transparency, including spaces between arms and torso and between legs. Preserve original pose.
+
+ASSET 6
+SOURCE /var/folders/hr/9cz75b6d67v7w2skk_l_q7xw0000gn/T/codex-clipboard-e8d9e3c8-b29b-4cba-8e99-c80ed83c54e7.png
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: the supplied local image is the exact edit target.
+Primary request: isolate only the existing yellow 奶龙 character by removing the background. This is a faithful cutout, not a redesign or new render.
+Constraints: keep the original character identity, silhouette, expression, gaze, mouth, pose, hands, body proportions, color, belly patch, surface texture and internal shading unchanged. Keep every existing visible part of the subject. Remove all background pixels and cast floor shadows. Center the existing subject on an actually transparent alpha canvas with narrow transparent margins and tight usable bounds. Preserve clean subject edges without white halo, matte, extra outline, rim, badge, text, or props. No added anatomy or invented content.
+Source specifics: laughing yellow character leaning toward viewer's left, closed happy eyes, wide black open laughing mouth with teeth, hands clasped over cream belly. The lower body/legs are cropped by the source. Preserve this crop exactly; do not invent missing feet or limbs. Remove gray floor, cast shadow, light background, rounded image frame, and all corners/frame pixels. Preserve the laughing expression as the final game form.
+
+DISCARDED ASSET 3 REVISION 1
+Saved as dragon-3-v1.png. Its heart opening was incorrectly transparent, so revision 2 above is the selected dragon-3.png.
+Use case: background-extraction
+Asset type: transparent PNG game sprite
+Input image: the supplied local image is the exact edit target.
+Primary request: isolate only the existing yellow 奶龙 character by removing the background. This is a faithful cutout, not a redesign or new render.
+Constraints: keep the original character identity, silhouette, expression, gaze, mouth, pose, hands, body proportions, color, belly patch, surface texture and internal shading unchanged. Keep every existing visible part of the subject. Remove all background pixels and cast floor shadows. Center the existing subject on an actually transparent alpha canvas with narrow transparent margins and tight usable bounds. Preserve clean subject edges without white halo, matte, extra outline, rim, badge, text, or props. No added anatomy or invented content.
+Source specifics: full-body yellow character with both hands making a heart in front of chest, big green eyes and slight closed smile. Preserve hand-heart opening and both existing feet. Remove pale background and floor shadow; the opening inside the hand heart must also show genuine transparency where it is background.
